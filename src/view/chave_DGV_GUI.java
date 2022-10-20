@@ -97,7 +97,7 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
         PainelPrincipal.add(registrar);
         registrar.setBounds(530, 20, 90, 50);
 
-        remover.setText("Remover");
+        remover.setText("Verificar");
         remover.setToolTipText("Remova do registro as chaves que já foram entregues.");
         remover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Professor(a)", "Chave", "Tipo", "Horário"
+                "Professor(a)", "Chave", "Tipo", "Horário", "Data", "Pendência"
             }
         ));
         jScrollPane1.setViewportView(registros);
@@ -157,7 +157,7 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         
-        database_funcoes_DAO.desregistraChave();
+        database_funcoes_DAO.verificaChave();
         
     }//GEN-LAST:event_removerActionPerformed
 
