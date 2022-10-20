@@ -319,8 +319,10 @@ public class database_funcoes_DAO {
                 String chave = rs.getString("reg_chave");
                 String tipo = rs.getString("reg_tipo");
                 String horario = rs.getString("reg_horario");
+                String data = rs.getString("reg_data");
+                String status = rs.getString("reg_status");
                 
-                String tBD[] = {nome, chave, tipo, horario};
+                String tBD[] = {nome, chave, tipo, horario, data, status};
                 model.addRow(tBD);
                 
             }
@@ -337,6 +339,9 @@ public class database_funcoes_DAO {
         Date dataHoraAtual = new Date();
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
         
+        Date dataDiaAtual = new Date();
+        String dia = new SimpleDateFormat("dd/MM/yyyy").format(dataDiaAtual);
+        
         controller.Conexao_DB.carregaDriver();
 
         Connection con = null;
@@ -347,7 +352,7 @@ public class database_funcoes_DAO {
             Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String SQL = "insert into registrochaves(reg_nome,reg_chave,reg_tipo,reg_horario) values(?,?,?,?)";
+        String SQL = "insert into registrochaves(reg_nome,reg_chave,reg_tipo,reg_horario,reg_data,reg_status) values(?,?,?,?,?,?)";
         
         try{
             PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
@@ -355,6 +360,8 @@ public class database_funcoes_DAO {
             insert.setString(2, chave);
             insert.setString(3, tipo);
             insert.setString(4, hora);
+            insert.setString(5, dia);
+            insert.setString(6, "Pendente");
             
             insert.execute();
             
@@ -370,7 +377,7 @@ public class database_funcoes_DAO {
         
     }
     
-    public static void desregistraChave(){
+    public static void verificaChave(){
         
         controller.Conexao_DB.carregaDriver();
 
@@ -384,15 +391,15 @@ public class database_funcoes_DAO {
         
         DefaultTableModel model = (DefaultTableModel) chave_DGV_GUI.registros.getModel();
         int row = chave_DGV_GUI.registros.getSelectedRow();
-        String eve = chave_DGV_GUI.registros.getModel().getValueAt(row, 3).toString();
+        String horario = chave_DGV_GUI.registros.getModel().getValueAt(row, 3).toString();
+        String data = chave_DGV_GUI.registros.getModel().getValueAt(row, 4).toString();
         
-        String SQL = "delete from registrochaves where reg_horario = ?";
+        String SQL = "update registrochaves set reg_status='Entregue' where reg_horario='"+horario+"' and reg_data='"+data+"'";
         
         
         try{
             PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
-            insert.setString(1, eve);
-            insert.execute();
+            insert.executeUpdate();
             
         }catch (Exception ex) {
             Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -464,10 +471,12 @@ public class database_funcoes_DAO {
             
             while(rs.next()){
                 String nome = rs.getString("reg_nome");
-                String chave = rs.getString("reg_item");
+                String item = rs.getString("reg_item");
                 String horario = rs.getString("reg_horario");
+                String data = rs.getString("reg_data");
+                String status = rs.getString("reg_status");
                 
-                String tBD[] = {nome, chave, horario};
+                String tBD[] = {nome, item, horario, data, status};
                 model.addRow(tBD);
                 
             }
@@ -483,6 +492,9 @@ public class database_funcoes_DAO {
         Date dataHoraAtual = new Date();
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
         
+        Date dataDiaAtual = new Date();
+        String dia = new SimpleDateFormat("dd/MM/yyyy").format(dataDiaAtual);
+        
         controller.Conexao_DB.carregaDriver();
 
         Connection con = null;
@@ -493,13 +505,15 @@ public class database_funcoes_DAO {
             Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String SQL = "insert into registroitens(reg_nome,reg_item,reg_horario) values(?,?,?)";
+        String SQL = "insert into registroitens(reg_nome,reg_item,reg_horario,reg_data,reg_status) values(?,?,?,?,?)";
         
         try{
             PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
             insert.setString(1, prof);
             insert.setString(2, item);
             insert.setString(3, hora);
+            insert.setString(4, dia);
+            insert.setString(5, "Pendente");
             
             insert.execute();
             
@@ -515,7 +529,7 @@ public class database_funcoes_DAO {
         
     }
     
-    public static void desregistraItem(){
+    public static void verificaItem(){
         
         controller.Conexao_DB.carregaDriver();
 
@@ -529,15 +543,15 @@ public class database_funcoes_DAO {
         
         DefaultTableModel model = (DefaultTableModel) item_DGV_GUI.registros.getModel();
         int row = item_DGV_GUI.registros.getSelectedRow();
-        String eve = item_DGV_GUI.registros.getModel().getValueAt(row, 2).toString();
+        String horario = item_DGV_GUI.registros.getModel().getValueAt(row, 2).toString();
+        String data = item_DGV_GUI.registros.getModel().getValueAt(row, 3).toString();
         
-        String SQL = "delete from registroitens where reg_horario = ?";
+        String SQL = "update registroitens set reg_status='Entregue' where reg_horario='"+horario+"' and reg_data='"+data+"'";
         
         
         try{
             PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
-            insert.setString(1, eve);
-            insert.execute();
+            insert.executeUpdate();
             
         }catch (Exception ex) {
             Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);

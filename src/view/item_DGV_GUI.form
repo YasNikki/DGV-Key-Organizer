@@ -164,7 +164,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="remover">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Remover"/>
+                    <Property name="text" type="java.lang.String" value="Verificar"/>
                     <Property name="toolTipText" type="java.lang.String" value="Remova do registro as chaves que j&#xe1; foram entregues."/>
                   </Properties>
                   <Events>
@@ -191,10 +191,12 @@
                     <Component class="javax.swing.JTable" name="registros">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
                             <Column editable="true" title="Professor" type="java.lang.Object"/>
                             <Column editable="true" title="Item" type="java.lang.Object"/>
                             <Column editable="true" title="Hor&#xe1;rio" type="java.lang.Object"/>
+                            <Column editable="true" title="Data" type="java.lang.Object"/>
+                            <Column editable="true" title="Pend&#xea;ncia" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>
