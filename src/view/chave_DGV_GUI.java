@@ -44,6 +44,7 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
         remover = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         registros = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciamento de Chaves");
@@ -114,11 +115,28 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
             new String [] {
                 "Professor(a)", "Chave", "Tipo", "Horário", "Data", "Pendência"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(registros);
 
         PainelPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 80, 690, 370);
+        jScrollPane1.setBounds(10, 80, 690, 350);
+
+        jButton1.setText("Remover");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PainelPrincipal.add(jButton1);
+        jButton1.setBounds(583, 440, 110, 23);
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
@@ -174,6 +192,12 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_voltarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        database_funcoes_DAO.desregistraChaves();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +237,7 @@ public class chave_DGV_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel FundoPrincipal;
     private javax.swing.JPanel PainelPrincipal;
     public static javax.swing.JComboBox chaveCBX;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

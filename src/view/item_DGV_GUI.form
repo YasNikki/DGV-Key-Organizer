@@ -182,7 +182,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="80" width="690" height="370"/>
+                      <AbsoluteConstraints x="10" y="80" width="690" height="350"/>
                     </Constraint>
                   </Constraints>
 
@@ -192,11 +192,11 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="0">
-                            <Column editable="true" title="Professor" type="java.lang.Object"/>
-                            <Column editable="true" title="Item" type="java.lang.Object"/>
-                            <Column editable="true" title="Hor&#xe1;rio" type="java.lang.Object"/>
-                            <Column editable="true" title="Data" type="java.lang.Object"/>
-                            <Column editable="true" title="Pend&#xea;ncia" type="java.lang.Object"/>
+                            <Column editable="false" title="Professor" type="java.lang.Object"/>
+                            <Column editable="false" title="Item" type="java.lang.Object"/>
+                            <Column editable="false" title="Hor&#xe1;rio" type="java.lang.Object"/>
+                            <Column editable="false" title="Data" type="java.lang.Object"/>
+                            <Column editable="false" title="Pend&#xea;ncia" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>
@@ -206,6 +206,19 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="jButton1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Remover"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="583" y="440" width="110" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

@@ -565,4 +565,84 @@ public class database_funcoes_DAO {
         
     }
     
+    public static void desregistraItem(){
+        
+        controller.Conexao_DB.carregaDriver();
+
+        Connection con = null;
+        
+        try{
+            con = (Connection) DriverManager.getConnection(url, username, password);
+        } catch (SQLException ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) item_DGV_GUI.registros.getModel();
+        int row = item_DGV_GUI.registros.getSelectedRow();
+        String dia = item_DGV_GUI.registros.getModel().getValueAt(row, 3).toString();
+        String data = item_DGV_GUI.registros.getModel().getValueAt(row, 2).toString();
+        String item = item_DGV_GUI.registros.getModel().getValueAt(row, 1).toString();
+        
+        String SQL = "delete from registroitens where reg_item=? and reg_horario=? and reg_data=?";
+        
+        
+        try{
+            PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
+            insert.setString(1, item);
+            insert.setString(2, data);
+            insert.setString(3, dia);
+            insert.execute();
+            
+        }catch (Exception ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            updateRegistroItens();
+        } catch (SQLException ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void desregistraChaves(){
+        
+        controller.Conexao_DB.carregaDriver();
+
+        Connection con = null;
+        
+        try{
+            con = (Connection) DriverManager.getConnection(url, username, password);
+        } catch (SQLException ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) chave_DGV_GUI.registros.getModel();
+        int row = chave_DGV_GUI.registros.getSelectedRow();
+        String data = chave_DGV_GUI.registros.getModel().getValueAt(row, 4).toString();
+        String horario = chave_DGV_GUI.registros.getModel().getValueAt(row, 3).toString();
+        String key = chave_DGV_GUI.registros.getModel().getValueAt(row, 1).toString();
+        
+        String SQL = "delete from registrochaves where reg_chave=? and reg_horario=? and reg_data=?";
+        
+        
+        try{
+            PreparedStatement insert = (PreparedStatement) con.prepareStatement(SQL);
+            insert.setString(1, key);
+            insert.setString(2, horario);
+            insert.setString(3, data);
+            insert.execute();
+            
+        }catch (Exception ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            updateRegistroChaves();
+        } catch (SQLException ex) {
+            Logger.getLogger(database_funcoes_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
 }
